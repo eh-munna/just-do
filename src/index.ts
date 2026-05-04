@@ -1,3 +1,3 @@
-const advancedTS: string = 'Some ADVANCED TS';
+const OOP_TS: string = 'Object Oriented Programming in TS';
 
-console.log(advancedTS);
+console.log(OOP_TS);
