@@ -1,9 +1,5 @@
-import {
-  createServer,
-  IncomingMessage,
-  ServerResponse,
-  type Server,
-} from 'http';
+import { createServer, IncomingMessage, Server, ServerResponse } from 'http';
+import { config } from './config';
 import { routeHandler } from './routes/route';
 
 const server: Server = createServer(
@@ -12,7 +8,6 @@ const server: Server = createServer(
   },
 );
 
-const port = 4000;
-server.listen(port, () => {
-  console.log(`Server is listening on port: ${port}`);
+server.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`);
 });

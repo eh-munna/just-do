@@ -1,7 +1,7 @@
-// ... existing code ...
+import dotenv from 'dotenv';
 
-export const checkFunction = () => {
-  console.log('Check function executed');
+dotenv.config();
+
+export const config = {
+  port: Number(process.env.PORT ?? 4000),
 };
-
-// ... existing code ...
