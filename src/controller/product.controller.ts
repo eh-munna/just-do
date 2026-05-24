@@ -9,7 +9,7 @@ export const productController: Handler = async (req, res) => {
   const urlParts = url.split('/');
   const idSegment = urlParts?.[2];
 
-  const id = idSegment ? Number(idSegment) : null;
+  const id = idSegment ? String(idSegment) : null;
 
   if (url === '/products' && method === 'GET') {
     const products = productService.findProducts();
@@ -20,6 +20,9 @@ export const productController: Handler = async (req, res) => {
   } else if (url === '/products' && method === 'POST') {
     const product = await productService.createProduct(req);
     sendResponse(res, 201, 'application/json', product);
+  } else if (id !== null && method === 'PUT') {
+    const product = await productService.updateProductById(id, req);
+    sendResponse(res, 200, 'application/json', product);
   }
 };
 
