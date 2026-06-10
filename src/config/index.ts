@@ -6,5 +6,6 @@ dotenv.config({
 });
 
 export const config = {
-  port: Number(process.env.PORT ?? 4000),
+  port: process.env.PORT || 8080,
+  connectionString: process.env.CONNECTION_STRING,
 };
