@@ -20,8 +20,22 @@ const initDB = async () => {
       age INT,
       created_at TIMESTAMP DEFAULT NOW(),
       updated_at TIMESTAMP DEFAULT NOW()
-      )
-      `,
+      )`,
+    );
+
+    await pool.query(
+      `
+      CREATE TABLE IF NOT EXISTS profiles(
+
+      id SERIAL PRIMARY KEY,
+      user_id INT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      gender VARCHAR(20),
+      phone VARCHAR(20),
+      address VARCHAR(100),
+      bio VARCHAR(200),
+      created_at TIMESTAMP DEFAULT NOW(),
+      updated_at TIMESTAMP DEFAULT NOW()
+      )`,
     );
     console.log('db initialized successfully');
   } catch (error) {

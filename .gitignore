@@ -31,3 +31,6 @@ dist-ssr
 
 # client side
 *.html
+
+# extra files
+rough.md
