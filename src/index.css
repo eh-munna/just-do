@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #e0e7ff; /* Light mode background */
+  --text: #0a0a0a; /* Light mode text */
+}
+
+:root.dark {
+  --bg: #020617; /* Dark mode background */
+  --text: #0ea5e9; /* Dark mode text */
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text transition-colors duration-250;
+  }
+}
