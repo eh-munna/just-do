@@ -1,7 +1,7 @@
 import { ThumbsDown, ThumbsUp } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Card({ name, age }) {
+export default function Card({ name, email }) {
   // --- Single status state approach (inactive) ---
   // const [reaction, setReaction] = useState('none'); // 'none' | 'liked' | 'disliked'
   // const liked = reaction === 'liked';
@@ -34,7 +34,7 @@ export default function Card({ name, age }) {
         {initials}
       </div>
       <h3 className="mb-1 text-xl font-semibold">{name}</h3>
-      <p className="opacity-80">Age: {age}</p>
+      <p className="opacity-80">Email: {email.toLowerCase()}</p>
 
       <div className="mt-4 flex gap-2">
         <button

@@ -1,11 +1,32 @@
+import { Loader } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Card from '../components/Card';
 
 export default function Home() {
-  const members = [
-    { name: 'John Doe', age: 30 },
-    { name: 'Jane Smith', age: 25 },
-    { name: 'Bob Johnson', age: 35 },
-  ];
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const url = `https://jsonplaceholder.typicode.com/users`;
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setMembers(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <section id="home" className="container mx-auto px-4 py-16">
@@ -20,11 +41,22 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Our Happy Clients
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {members.map((member, index) => (
-              <Card key={index} name={member.name} age={member.age} />
-            ))}
-          </div>
+
+          {error ? (
+            <p>Error: {error}</p>
+          ) : loading ? (
+            <Loader
+              size={20}
+              fill={loading ? 'currentColor' : 'none'}
+              strokeWidth={1.5}
+            />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {members.map((user, index) => (
+                <Card key={index} name={user.name} email={user.email} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
