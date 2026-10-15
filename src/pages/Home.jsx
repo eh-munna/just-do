@@ -1,64 +1,53 @@
-import { Loader } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import Card from '../components/Card';
+import { CloudSun, Search } from 'lucide-react';
+import { useState } from 'react';
+import Modal from '../components/Modal';
 
 export default function Home() {
-  const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const url = `https://jsonplaceholder.typicode.com/users`;
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setMembers(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <section id="home" className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Just Do It</h1>
-        <p className="text-lg md:text-xl opacity-80 max-w-2xl">
-          A modern Product Displaying Platform.
+      <section
+        id="home"
+        className="container mx-auto px-4 py-24 flex flex-col items-center text-center min-h-[calc(100vh-4rem)]"
+      >
+        <div className="mb-8 p-6 rounded-full bg-text/10">
+          <CloudSun size={64} strokeWidth={1.5} />
+        </div>
+
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Weather at a<br />
+          <span className="opacity-60">Glance</span>
+        </h1>
+
+        <p className="text-lg md:text-xl opacity-70 max-w-xl mb-10 leading-relaxed">
+          Enter any city name and get instant weather details — temperature,
+          humidity, wind speed, and more. Fast, clean, and simple.
         </p>
-      </section>
 
-      <section>
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Our Happy Clients
-          </h2>
+        <button
+          onClick={() => setModalOpen(true)}
+          className="flex items-center gap-3 px-8 py-4 bg-text text-bg rounded-2xl text-lg font-semibold hover:opacity-90 transition-opacity shadow-lg"
+        >
+          <Search size={20} />
+          Search City Weather
+        </button>
 
-          {error ? (
-            <p>Error: {error}</p>
-          ) : loading ? (
-            <Loader
-              size={20}
-              fill={loading ? 'currentColor' : 'none'}
-              strokeWidth={1.5}
-            />
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {members.map((user, index) => (
-                <Card key={index} name={user.name} email={user.email} />
-              ))}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl text-left">
+          {[
+            { label: 'Real-time Data', desc: 'Up-to-date weather conditions for any city worldwide.' },
+            { label: 'Detailed Stats', desc: 'Feels like, humidity, wind speed, visibility & more.' },
+            { label: 'Any City', desc: 'Search thousands of cities across all continents.' },
+          ].map((item) => (
+            <div key={item.label} className="p-6 rounded-2xl border border-text/15 bg-text/5">
+              <h3 className="font-bold text-lg mb-2">{item.label}</h3>
+              <p className="opacity-60 text-sm leading-relaxed">{item.desc}</p>
             </div>
-          )}
+          ))}
         </div>
       </section>
+
+      {modalOpen && <Modal onClose={() => setModalOpen(false)} />}
     </>
   );
 }
