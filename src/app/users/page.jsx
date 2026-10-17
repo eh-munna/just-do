@@ -1,8 +1,8 @@
-import { useLoaderData } from 'react-router';
-import User from '../components/User';
+import User from '../../components/User';
 
-export default function Users() {
-  const users = useLoaderData();
+export default async function Users() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const users = await res.json();
 
   return (
     <section id="users" className="container mx-auto px-4 py-16 max-w-4xl">

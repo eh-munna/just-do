@@ -23,8 +23,8 @@ export default function About() {
     <section id="about" className="container mx-auto px-4 py-16 max-w-4xl">
       <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
       <p className="opacity-70 text-lg max-w-2xl mb-16 leading-relaxed">
-        Just Do is built for people who want to get things done — no clutter,
-        no distractions, just a clean and focused experience.
+        Just Do is built for people who want to get things done — no clutter, no
+        distractions, just a clean and focused experience.
       </p>
 
       <h2 className="text-2xl font-bold mb-6">Our Values</h2>

@@ -1,8 +1,11 @@
 import { Globe, Mail, MapPin, Phone } from 'lucide-react';
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export default function User({ user }) {
-  const initials = user.name.split(' ').map((n) => n[0]).join('');
+  const initials = user.name
+    .split(' ')
+    .map((n) => n[0])
+    .join('');
 
   return (
     <div className="p-6 rounded-2xl border border-text/15 bg-text/5">
@@ -15,7 +18,7 @@ export default function User({ user }) {
           <p className="opacity-50 text-sm">@{user.username}</p>
         </div>
         <Link
-          to={`/users/${user.id}`}
+          href={`/users/${user.id}`}
           className="text-xs opacity-50 hover:opacity-100 border border-text/20 px-3 py-1 rounded-full shrink-0 transition-opacity"
         >
           View

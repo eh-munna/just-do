@@ -1,36 +1,38 @@
-import { Moon, Sun } from 'lucide-react';
-import { NavLink } from 'react-router';
-import { useTheme } from '../hooks/useTheme';
+'use client';
 
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Users', href: '/users' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy', href: '/privacy' },
-];
+import { Moon, Sun } from 'lucide-react';
+import Link from 'next/link';
+import { useTheme } from '../hooks/useTheme';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'Users', href: '/users' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy', href: '/privacy' },
+  ];
+
   return (
     <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-      <NavLink
-        to="/"
+      <Link
+        href="/"
         className="text-2xl font-bold hover:opacity-80 transition-opacity"
       >
         Just Do
-      </NavLink>
+      </Link>
 
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-6">
         {navLinks.map(({ label, href }) => (
-          <NavLink
+          <Link
             key={href}
-            to={href}
+            href={href}
             className="opacity-60 hover:opacity-100 transition-opacity"
           >
             {label}
-          </NavLink>
+          </Link>
         ))}
 
         <button
@@ -38,7 +40,11 @@ export default function Navbar() {
           className="cursor-pointer p-2 rounded-lg hover:bg-text/10 transition-colors"
           aria-label="Toggle theme"
         >
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === null ? null : theme === 'dark' ? (
+            <Sun size={20} />
+          ) : (
+            <Moon size={20} />
+          )}
         </button>
       </div>
     </nav>
