@@ -1,13 +1,13 @@
-import { Link } from 'react-router';
 import { Moon, Sun } from 'lucide-react';
+import { NavLink } from 'react-router';
 import { useTheme } from '../hooks/useTheme';
 
 const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Users', href: '/users' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy', href: '/privacy' },
-  { label: 'Weather', href: '/weather' },
 ];
 
 export default function Navbar() {
@@ -15,17 +15,22 @@ export default function Navbar() {
 
   return (
     <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-      <Link to="/" className="text-2xl font-bold hover:opacity-80 transition-opacity">WeatherGlance</Link>
+      <NavLink
+        to="/"
+        className="text-2xl font-bold hover:opacity-80 transition-opacity"
+      >
+        Just Do
+      </NavLink>
 
       <div className="flex items-center gap-8">
         {navLinks.map(({ label, href }) => (
-          <a
+          <NavLink
             key={href}
-            href={href}
+            to={href}
             className="opacity-60 hover:opacity-100 transition-opacity"
           >
             {label}
-          </a>
+          </NavLink>
         ))}
 
         <button

@@ -1,9 +1,8 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'hello@weatherglance.io' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 012-3456' },
-  { icon: MapPin, label: 'Address', value: '42 Cloud Street, San Francisco, CA' },
+  { icon: Mail, label: 'Email', value: 'hello@justdo.app' },
+  { icon: MapPin, label: 'Location', value: 'Remote' },
 ];
 
 export default function Contact() {
@@ -11,12 +10,11 @@ export default function Contact() {
     <section id="contact" className="container mx-auto px-4 py-16 max-w-4xl">
       <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
       <p className="opacity-70 text-lg mb-16 max-w-xl leading-relaxed">
-        Have a question or feedback? We'd love to hear from you. Fill in the
-        form and we'll get back to you within 24 hours.
+        Have a question or feedback? Fill in the form and we'll get back to you
+        within 24 hours.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Form */}
         <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
           <div>
             <label className="block text-sm font-medium opacity-70 mb-2">Full Name</label>
@@ -50,7 +48,6 @@ export default function Contact() {
           </button>
         </form>
 
-        {/* Contact info */}
         <div className="flex flex-col gap-6">
           {contactInfo.map(({ icon: Icon, label, value }) => (
             <div key={label} className="flex items-start gap-4 p-5 rounded-2xl border border-text/15 bg-text/5">
