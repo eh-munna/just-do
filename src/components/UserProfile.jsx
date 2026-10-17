@@ -2,8 +2,12 @@
 import { Building2, Globe, Mail, MapPin, Phone } from 'lucide-react';
 
 import { ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function UserProfile({ user }) {
+  // navigate to back
+  const router = useRouter();
+
   const initials = user.name
     .split(' ')
     .map((n) => n[0])
@@ -12,7 +16,7 @@ export default function UserProfile({ user }) {
   return (
     <section className="container mx-auto px-4 py-16 max-w-2xl">
       <button
-        onClick={() => console.log(user)}
+        onClick={() => router.back()}
         className="flex items-center gap-2 mb-8 px-4 py-2 rounded-xl border border-text/20 opacity-60 hover:opacity-100 hover:bg-text/10 transition-all cursor-pointer"
       >
         <ArrowLeft size={18} />
