@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, MapPin } from 'lucide-react';
+import { sendMessage } from '../../lib/actions';
 
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'hello@justdo.app' },
@@ -12,20 +13,18 @@ export default function Contact() {
     <section id="contact" className="container mx-auto px-4 py-16 max-w-4xl">
       <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
       <p className="opacity-70 text-lg mb-16 max-w-xl leading-relaxed">
-        Have a question or feedback? Fill in the form and we&apos;ll get back to you
-        within 24 hours.
+        Have a question or feedback? Fill in the form and we&apos;ll get back to
+        you within 24 hours.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <form
-          className="flex flex-col gap-5"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="flex flex-col gap-5" action={sendMessage}>
           <div>
             <label className="block text-sm font-medium opacity-70 mb-2">
               Full Name
             </label>
             <input
+              name="name"
               type="text"
               placeholder="Your name"
               className="w-full px-4 py-3 rounded-xl bg-text/5 border border-text/20 focus:outline-none focus:border-text/50 transition-colors placeholder:opacity-40"
@@ -36,6 +35,7 @@ export default function Contact() {
               Email
             </label>
             <input
+              name="email"
               type="email"
               placeholder="you@example.com"
               className="w-full px-4 py-3 rounded-xl bg-text/5 border border-text/20 focus:outline-none focus:border-text/50 transition-colors placeholder:opacity-40"
@@ -46,6 +46,7 @@ export default function Contact() {
               Message
             </label>
             <textarea
+              name="message"
               rows={5}
               placeholder="Tell us what's on your mind..."
               className="w-full px-4 py-3 rounded-xl bg-text/5 border border-text/20 focus:outline-none focus:border-text/50 transition-colors placeholder:opacity-40 resize-none"
