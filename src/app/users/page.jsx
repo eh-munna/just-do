@@ -1,8 +1,8 @@
 import User from '../../components/User';
+import { getUsers } from '../../utils/getUsers';
 
 export default async function Users() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  const users = await res.json();
+  const users = await getUsers();
 
   return (
     <section id="users" className="container mx-auto px-4 py-16 max-w-4xl">
